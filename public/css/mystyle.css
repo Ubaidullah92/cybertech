@@ -187,3 +187,58 @@ a.default {
     text-transform: none;
     color: #676464;
 }
+
+
+.dataTables_wrapper {
+    margin-top: 10px;
+}
+.dataTables_wrapper table{
+    width: 100% !important;
+   
+}
+
+.dataTables_length label{
+    width: 143%;
+}
+
+.dataTables_length select{
+    height: 34px;
+    width: 40%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.dataTables_filter input{
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.body-table{
+    margin: 20px 0px;
+    background-color: white;
+}
+
+.paginate_button{
+        background: transparent !important;
+}
+.table.dataTable{
+    border:none !important;
+}
+@media screen and (max-width: 425px){
+    .dataTables_length label{
+        width: 100%;
+    }
+}
