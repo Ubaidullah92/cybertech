@@ -27,17 +27,6 @@
             </div>
         </div>
     </section>
-    <section>
-        <table id="users-table" class="table">
-            <thead>
-            <tr>
-                <td>id</td>
-                <td>name</td>
-            </tr>
-            </thead>
-
-        </table>
-    </section>
 @endsection
 
 @push('script')
@@ -74,7 +63,7 @@
     {{--</script>--}}
     <script type="text/javascript" >
         $(function() {
-            $('#users-table').dataTable({
+            $('#example1').dataTable({
                 processing: true,
                 serverSide: true,
                 ajax: 'http://127.0.0.1:8000/position/view'
