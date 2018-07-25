@@ -17,3 +17,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('position','PositionController');
+Route::get('position/view','PositionController@getPositions');

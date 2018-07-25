@@ -32,6 +32,37 @@ class PositionController extends Controller
         return view('pages.createPosition');
     }
 
+    
+    public function getPositions()
+    {
+        $datas = [
+           "0" => [
+                "id" =>228,
+                "category_name" =>'Attraction',
+                "place_name"=>"Natural History & Science Museum",
+                "description"=>"asdsada",
+                "sortDescription"=>"asdsada",
+                "region"=>"Colombo",
+                "city"=>"Angoda",
+                ],
+            "1" => [
+                "id" =>228,
+                "category_name" =>'Attraction',
+                "place_name"=>"Natural History & Science Museum",
+                "description"=>"asdsada",
+                "sortDescription"=>"asdsada",
+                "region"=>"Colombo",
+                "city"=>"Angoda",
+              ]
+            ];
+         return datatables()->of($datas)
+            ->addColumn('action', function ($data) {
+                return '<a href="/place/' . $data->id . '/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            })
+            ->addIndexColumn()
+            ->toJson();
+
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'CYBERTECH') }}</title>
 
     
    
@@ -30,6 +30,9 @@
 
     <!-- toastr -->
     <link href="css/toastr.min.css" rel="stylesheet" type="text/css">
+
+    <!-- datatable -->
+    <link rel="stylesheet" href="css/datatables.min.css">
 </head>
 <body>
     <div id="app">
@@ -88,7 +91,9 @@
     </div>
     
 </body>
-    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    @stack('script')
     <!-- toastr -->
     <script src="js/toastr.min.js"></script>
     <script>
@@ -113,5 +118,4 @@
         }
         @endif
     </script>
-@stack('script')
 </html>
