@@ -68,13 +68,13 @@
                 </select>
 
                 <label><b>Previously worked company</b> <span class="span">*</span></label>
-                <input type="text" placeholder="Enter the company name that you have been worked at last..." name="lastcompany" required>
+                <input type="text" placeholder="Enter the company name that you have been worked at last..." name="lastCompany" required>
 
                 <label><b>Your job tittle</b> <span class="span">*</span></label>
-                <input type="text" placeholder="Ex: Marketing Assistant, Software Engineer, UI/UX designer, etc..." name="lasttittle" required>
+                <input type="text" placeholder="Ex: Marketing Assistant, Software Engineer, UI/UX designer, etc..." name="lastTittle" required>
 
                 <label><b>Monthly salary was</b><span class="span">*</span></label>
-                <input type="text" placeholder="Ex: 25000 LKR" name="lastsalary" required>
+                <input type="text" placeholder="Ex: 25000 LKR" name="lastSalary" required>
 
                 <label><b>Experience in years</b> <span class="span">*</span></label>
                 <input type="text" placeholder="Ex: 2 1/2 years, etc..." name="experience" required>
