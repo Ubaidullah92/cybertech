@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<form id="positionForm" action="/position"  method="POST">
-    @csrf
+<form id="positionForm" action="{{route('posititon')}}"  method="post">
+{{ csrf_field() }}
   <div class="container">
     
     <div class="section martop30">

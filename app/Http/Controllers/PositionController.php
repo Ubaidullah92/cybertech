@@ -35,7 +35,7 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request);  
+        var_dump('asdfafsdasfafasfa');  
         exit;
 
     }
