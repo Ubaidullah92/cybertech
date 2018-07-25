@@ -33,6 +33,7 @@ class CreateApplicantsTable extends Migration
             $table->string('account_name');
             $table->string('bank');
             $table->string('branch');
+            $table->char('status',2);
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Applicant;
+use App\Position;
 use Illuminate\Http\Request;
 
 class ApplicantsController extends Controller
@@ -59,39 +60,43 @@ class ApplicantsController extends Controller
             'accName' => 'required',
             'bankName' => 'required',
             'branch' => 'required',
-//            'agreement' => 'required',
+            'agreement' => 'required',
 
         ]);
         try {
-            $position = new Applicant();
-            $position->first_name = $request->firstName;
-            $position->last_name = $request->lastName;
-            $position->address = $request->address;
-            $position->email = $request->email;
-            $position->mobile = $request->mobileNumber;
-            $position->dob = $request->birthday;
-            $position->nic_no = $request->nicNumber;
-            $position->cv_upload = $request->fileToUpload;
+            $position = Position::select('position')->find($request->positionApply);
+            $file_name = $request->firstName.' '.$request->lastName.' - '.$position.' - '. date('d m Y h iA');
+
+            $applicant = new Applicant();
+            $applicant->first_name = $request->firstName;
+            $applicant->last_name = $request->lastName;
+            $applicant->address = $request->address;
+            $applicant->email = $request->email;
+            $applicant->mobile = $request->mobileNumber;
+            $applicant->dob = $request->birthday;
+            $applicant->nic_no = $request->nicNumber;
+            $applicant->cv_upload = $file_name;
 //           proffesional details
-            $position->position = $request->positionApply;
-            $position->last_company = $request->lastCompany;
-            $position->last_tittle = $request->lastTittle;
-            $position->last_salary = $request->lastSalary;
-            $position->experience = $request->experience;
-            $position->notes = $request->notes;
+            $applicant->position = $request->positionApply;
+            $applicant->last_company = $request->lastCompany;
+            $applicant->last_tittle = $request->lastTittle;
+            $applicant->last_salary = $request->lastSalary;
+            $applicant->experience = $request->experience;
+            $applicant->notes = $request->notes;
 
 //            Account details
-            $position->account_no = $request->accNumber;
-            $position->account_name = $request->accName;
-            $position->bank = $request->bankName;
-            $position->branch = $request->branch;
+            $applicant->account_no = $request->accNumber;
+            $applicant->account_name = $request->accName;
+            $applicant->bank = $request->bankName;
+            $applicant->branch = $request->branch;
 
-            $position->save();
+            $applicant->branch = 2; //    pending status
+            $applicant->save();
             $notification = array(
-                'message' => 'Position Successfly Added',
+                'message' => 'Position Successfly Added',   
                 'alert-type' => 'success'
             );
-            return redirect('/position')->with($notification);
+            return redirect()->back()->with($notification);
         } catch (QueryExeption $e) {
             $notification = array(
                 'message' => 'Something went wrong!',

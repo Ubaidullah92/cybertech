@@ -20,7 +20,6 @@ class PositionController extends Controller
      */
     public function index()
     {
-
         return view('pages.position');
     }
 
@@ -38,15 +37,14 @@ class PositionController extends Controller
     public function getPositions()
     {
 
-
-        $datas = Position::get();
-
-         return Datatables()->of($datas)
+        return datatables()->eloquent(Position::query())->toJson();
+    
+         /* return Datatables()->of($datas)
             ->addColumn('action', function ($data) {
                 return '<a href="/place/' . $data->id . '/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
             })
             ->addIndexColumn()
-            ->toJson();
+            ->toJson(); */
 
     }
     /**
