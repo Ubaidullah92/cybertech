@@ -121,6 +121,14 @@ a.default {
     text-decoration: none;
 }
 
+.error-msg{
+    color: #a91c1c
+}
+.has-error{
+    border-color: #dd4b39 !important;
+    box-shadow: none;
+}
+
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
     .cancelbtn, .signupbtn {

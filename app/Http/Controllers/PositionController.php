@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PositionController extends Controller
 {
+
+    public function __construct()
+    {
+        // $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,8 +40,31 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump('asdfafsdasfafasfa');  
-        exit;
+        $validatedData = $request->validate([
+            'position' => 'required',
+            'type' => 'required',
+            'description' => 'required|min:10',
+            'status' => 'required|max:1|numeric',
+        ]);
+       try{
+           /*  $position = new Position();
+            $position->position = $request->position;
+            $position->type = $request->type;
+            $position->description = $request->description;
+            $position->status = $request->status;
+            $position->save(); */
+            $notification = array(
+                'message' => 'Position Successfly Added', 
+                'alert-type' => 'success'
+            );
+            return redirect('/position')->with($notification);
+       }catch(QueryExeption $e){
+            $notification = array(
+                'message' => 'Something went wrong!', 
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+       }
 
     }
 

@@ -10,9 +10,14 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    
+   
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
+   
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -22,6 +27,9 @@
 
     <!-- my Styles -->
     <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
+
+    <!-- toastr -->
+    <link href="css/toastr.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="app">
@@ -80,5 +88,30 @@
     </div>
     
 </body>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <!-- toastr -->
+    <script src="js/toastr.min.js"></script>
+    <script>
+        @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}";
+            switch(type){
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+            
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+        @endif
+    </script>
 @stack('script')
 </html>
