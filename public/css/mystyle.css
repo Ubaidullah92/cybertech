@@ -234,3 +234,11 @@ a.default {
 .paginate_button{
         background: transparent !important;
 }
+.table.dataTable{
+    border:none !important;
+}
+@media screen and (max-width: 425px){
+    .dataTables_length label{
+        width: 100%;
+    }
+}
