@@ -35,26 +35,8 @@ class PositionController extends Controller
     
     public function getPositions()
     {
-        $datas = [
-           "0" => [
-                "id" =>228,
-                "category_name" =>'Attraction',
-                "place_name"=>"Natural History & Science Museum",
-                "description"=>"asdsada",
-                "sortDescription"=>"asdsada",
-                "region"=>"Colombo",
-                "city"=>"Angoda",
-                ],
-            "1" => [
-                "id" =>228,
-                "category_name" =>'Attraction',
-                "place_name"=>"Natural History & Science Museum",
-                "description"=>"asdsada",
-                "sortDescription"=>"asdsada",
-                "region"=>"Colombo",
-                "city"=>"Angoda",
-              ]
-            ];
+        $datas = Position::get();
+       
          return datatables()->of($datas)
             ->addColumn('action', function ($data) {
                 return '<a href="/place/' . $data->id . '/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
@@ -78,12 +60,12 @@ class PositionController extends Controller
             'status' => 'required|max:1|numeric',
         ]);
        try{
-           /*  $position = new Position();
+            $position = new Position();
             $position->position = $request->position;
             $position->type = $request->type;
             $position->description = $request->description;
             $position->status = $request->status;
-            $position->save(); */
+            $position->save(); 
             $notification = array(
                 'message' => 'Position Successfly Added', 
                 'alert-type' => 'success'

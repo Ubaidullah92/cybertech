@@ -33,30 +33,14 @@
 <script src="js/datatables.min.js"></script>
 <script>
     $(function () {
-        var data = [
-    [
-        "Tiger Nixon",
-        "System Architect",
-        "Edinburgh",
-        "5421",
-        
-    ],
-    [
-        "Garrett Winters",
-        "Director",
-        "Edinburgh",
-        "8422",
-       
-    ]
-]
-         var t =    $('#example1').DataTable({
-            data: data
-               /*  processing: true,
+    
+         var t = $('#example1').DataTable({
+                processing: true,
                 serverSide: true,
 
                 ajax: {
                     url: '/position/view',
-                    method: 'POST'
+                    method: 'GET'
                 },
                 columns: [
                     {data: 'DT_Row_Index',name:'DT_Row_Index'},
@@ -66,15 +50,15 @@
                     {data: 'region', name: 'region'},
                     {data: 'city', name: 'city'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
-                ] */
+                ] 
             });
 
 
             /*success alert hide*/
-            $("#success-alert").hide();
+            /*$("#success-alert").hide();
             $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
                 $("#success-alert").slideUp(500);
-            });
+            });*/
         })
 </script>
 @endpush

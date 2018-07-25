@@ -91,8 +91,6 @@
     </div>
     
 </body>
-    <script src="js/jquery-3.3.1.min.js"></script>
-
     @stack('script')
     <!-- toastr -->
     <script src="js/toastr.min.js"></script>
