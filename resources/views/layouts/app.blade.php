@@ -13,7 +13,7 @@
     
    
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
 
 
    
@@ -89,9 +89,9 @@
             @yield('content')
         </main>
     </div>
-    
+
 </body>
-    @stack('script')
+
     <!-- toastr -->
     <script src="js/toastr.min.js"></script>
     <script>
@@ -116,4 +116,5 @@
         }
         @endif
     </script>
+@stack('script')
 </html>

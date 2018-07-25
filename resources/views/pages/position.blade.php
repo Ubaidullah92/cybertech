@@ -27,38 +27,58 @@
             </div>
         </div>
     </section>
+    <section>
+        <table id="users-table" class="table">
+            <thead>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+            </tr>
+            </thead>
+
+        </table>
+    </section>
 @endsection
 
 @push('script')
-<script src="js/datatables.min.js"></script>
-<script>
-    $(function () {
-    
-         var t = $('#example1').DataTable({
+    <script src="js/datatables.min.js"></script>
+    {{--<script>--}}
+        {{--$(function () {--}}
+
+            {{--var t = $('#example1').DataTable({--}}
+                {{--processing: true,--}}
+                {{--serverSide: true,--}}
+
+                {{--ajax: {--}}
+                    {{--url: '/position/view',--}}
+                    {{--method: 'GET'--}}
+                {{--},--}}
+                {{--columns: [--}}
+                    {{--{data: 'DT_Row_Index',name:'DT_Row_Index'},--}}
+                    {{--{data: 'place_name', name: 'place_name'},--}}
+                    {{--{data: 'description', name: 'description'},--}}
+                    {{--{data: 'category_name', name: 'category_name'},--}}
+                    {{--{data: 'region', name: 'region'},--}}
+                    {{--{data: 'city', name: 'city'},--}}
+                    {{--{data: 'action', name: 'action', orderable: false, searchable: false}--}}
+                {{--]--}}
+            {{--});--}}
+
+
+            {{--/*success alert hide*/--}}
+            {{--/*$("#success-alert").hide();--}}
+            {{--$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){--}}
+                {{--$("#success-alert").slideUp(500);--}}
+            {{--});*/--}}
+        {{--})--}}
+    {{--</script>--}}
+    <script type="text/javascript" >
+        $(function() {
+            $('#users-table').dataTable({
                 processing: true,
                 serverSide: true,
-
-                ajax: {
-                    url: '/position/view',
-                    method: 'GET'
-                },
-                columns: [
-                    {data: 'DT_Row_Index',name:'DT_Row_Index'},
-                    {data: 'place_name', name: 'place_name'},
-                    {data: 'description', name: 'description'},
-                    {data: 'category_name', name: 'category_name'},
-                    {data: 'region', name: 'region'},
-                    {data: 'city', name: 'city'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false}
-                ] 
+                ajax: 'http://127.0.0.1:8000/position/view'
             });
-
-
-            /*success alert hide*/
-            /*$("#success-alert").hide();
-            $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
-                $("#success-alert").slideUp(500);
-            });*/
-        })
-</script>
+        });
+    </script>
 @endpush

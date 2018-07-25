@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Position;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class PositionController extends Controller
 {
@@ -19,6 +20,7 @@ class PositionController extends Controller
      */
     public function index()
     {
+
         return view('pages.position');
     }
 
@@ -35,9 +37,11 @@ class PositionController extends Controller
     
     public function getPositions()
     {
+
+
         $datas = Position::get();
-       
-         return datatables()->of($datas)
+
+         return Datatables()->of($datas)
             ->addColumn('action', function ($data) {
                 return '<a href="/place/' . $data->id . '/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
             })
