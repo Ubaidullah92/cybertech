@@ -15,7 +15,8 @@ class ApplicantsController extends Controller
      */
     public function index()
     {
-        return view('pages.index');
+        $positions = Position::where('status',1)->get();
+        return view('pages.index',compact('positions'));
     }
 
     /**
@@ -65,7 +66,8 @@ class ApplicantsController extends Controller
         ]);
         try {
             $position = Position::select('position')->find($request->positionApply);
-            $file_name = $request->firstName.' '.$request->lastName.' - '.$position.' - '. date('d m Y h iA');
+            $file_name = $request->firstName.' '.$request->lastName.' - '.$position.' - '. date('d m Y h iA').'.'.$request->get('fileToUpload')->getClientOriginalExtension();
+            $request->get('upload_file')->move(public_path('files') . $file_name);
 
             $applicant = new Applicant();
             $applicant->first_name = $request->firstName;
@@ -96,7 +98,7 @@ class ApplicantsController extends Controller
                 'message' => 'Position Successfly Added',   
                 'alert-type' => 'success'
             );
-            return redirect()->back()->with($notification);
+            return redirect('/')->back()->with($notification);
         } catch (QueryExeption $e) {
             $notification = array(
                 'message' => 'Something went wrong!',

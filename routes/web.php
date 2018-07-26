@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'ApplicantsController@index');
+Route::post('/applicant', 'ApplicantsController@store')->name('applicant.store');
 
 Auth::routes();
 

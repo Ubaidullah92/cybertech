@@ -15,16 +15,14 @@
     <div class="notice-frame">
         <h3 class="notice-header">Vacancies available to apply!</h3>
         <div class="notice-body">
-
-            <p class="notice-p"># Laraval Developers - <span class="notice-span">Work Online</span></p>
-            <p class="notice-p"># UI Developers - <span class="notice-span">Work Online</span></p>
-            <p class="notice-p"># Business Developers - <span class="notice-span">Work Online</span></p>
-            <p class="notice-p"># WordPress Developers - <span class="notice-span">Work Online</span></p>
-            <p class="notice-p"># React Native Developers - <span class="notice-span">Work Online</span></p>
+            @foreach($positions as $position)
+            <p class="notice-p"># {{$position->position}} - <span class="notice-span">{{$position->type}}</span></p>
+            @endforeach
         </div>
     </div>
 
-    <form id="applicantForm" action="sendData.php" enctype="multipart/form-data" method="POST">
+    <form id="applicantForm" action="{{route('applicant.store')}}"  method="post">
+    {{ csrf_field() }}
         <div class="container">
             
             <div class="section">
@@ -60,11 +58,10 @@
                 <h3 class="h3">Professional details.</h3>
                 <label><b>what is the position you need to apply?</b> <span class="span">*</span></label>
                 <select class="select" name="positionApply" id="positionApply">
-                    <option value="Laraval Developer">Laraval Developer</option>
-                    <option value="UI Developer">UI Developer</option>
-                    <option value="Business Developer">Business Developer</option>
-                    <option value="WordPress Developer">WordPress Developer</option>
-                    <option value="React Native Developer">React Native Developer</option>
+                    @foreach($positions as $position)
+                    <option value="{{$position->id}}">{{$position->position}}</option>
+                    @endforeach
+                    
                 </select>
 
                 <label><b>Previously worked company</b> <span class="span">*</span></label>
