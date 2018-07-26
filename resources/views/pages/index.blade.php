@@ -6,6 +6,9 @@
         <link href="https://fonts.googleapis.com/css?family=Arima+Madurai" rel="stylesheet">
         <!-- my Styles -->
         <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
+
+        <!-- toastr -->
+        <link href="css/toastr.min.css" rel="stylesheet" type="text/css">
     </head>
 <body>
     <a href="https://www.facebook.com/cybertechInt.lk/"><img src="logo.png" style="margin-left:100px; height: 85px; width: auto; position: absolute;" /><a/>
@@ -21,7 +24,7 @@
         </div>
     </div>
 
-    <form id="applicantForm" action="{{route('applicant.store')}}"  method="post">
+    <form id="applicantForm" action="{{route('store')}}" enctype="multipart/form-data"  method="post">
     {{ csrf_field() }}
         <div class="container">
             
@@ -50,11 +53,11 @@
 
                 <label><b>Your CV</b> <span class="span">*</span></label>
                 <div style="border:1px solid #ccc; padding: 10px 0 10px 20px; margin-top: 10px; background-color: #ffffff;">
-                    <input type="file" placeholder="Enter your NIC Number" name="fileToUpload" required> <span class="span">Please note: file size should be below than 2mb</span>
+                    <input type="file" name="fileToUpload" required> <span class="span">Please note: file size should be below than 2mb</span>
                 </div>
             </div>
 
-            <div class="section martop30">
+           <div class="section martop30">
                 <h3 class="h3">Professional details.</h3>
                 <label><b>what is the position you need to apply?</b> <span class="span">*</span></label>
                 <select class="select" name="positionApply" id="positionApply">
@@ -63,7 +66,7 @@
                     @endforeach
                     
                 </select>
-
+ 
                 <label><b>Previously worked company</b> <span class="span">*</span></label>
                 <input type="text" placeholder="Enter the company name that you have been worked at last..." name="lastCompany" required>
 
@@ -118,5 +121,21 @@
         document.getElementById("applicantForm").reset();
     }
 </script>
+ <!-- toastr -->
+ <script src="js/toastr.min.js"></script>
+    <script>
+        @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}";
+            switch(type){
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+        @endif
+    </script>
 
 </html>

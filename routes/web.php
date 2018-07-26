@@ -10,12 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'ApplicantsController@index');
-Route::post('/applicant', 'ApplicantsController@store')->name('applicant.store');
+Route::get('/', 'HomeController@index')->name('home');
+Route::post('/apply', 'HomeController@store')->name('store');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/applicant/view','ApplicantsController@getApplicant')->name('applicant.view');
+Route::resource('applicant', 'ApplicantsController');
+Route::get('/position/view','PositionController@getPositions')->name('position.view');
 Route::resource('position','PositionController');
-Route::get('position/view','PositionController@getPositions')->name('position.view');

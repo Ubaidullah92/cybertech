@@ -15,10 +15,25 @@ class ApplicantsController extends Controller
      */
     public function index()
     {
-        $positions = Position::where('status',1)->get();
-        return view('pages.index',compact('positions'));
+        return view('pages.applicant');
     }
 
+    public function getApplicant()
+    {
+
+        return datatables()->eloquent(Applicant::query())
+                    ->addColumn('action', function ($data) {
+                        return '<select class="select" name="status'.$data->id.'" id="status'.$data->id.'">
+                        <option value="1">Selected</option>
+                        <option value="2">Rejected</option>
+                        <option value="3">Pending</option>
+                    </select> <a href="/applicant/' . $data->id . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> View</a>';
+                    })
+                    ->addIndexColumn()
+                    ->toJson();
+    
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -37,75 +52,6 @@ class ApplicantsController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'address' => 'required',
-            'email' => 'required',
-            'mobileNumber' => 'required',
-            'birthday' => 'required',
-            'nicNumber' => 'required',
-            'fileToUpload' => 'required',
-
-            /* proffesional details*/
-            'positionApply' => 'required',
-            'lastCompany' => 'required',
-            'lastTittle' => 'required',
-            'lastSalary' => 'required',
-            'experience' => 'required',
-            'notes' => 'required',
-
-            /*  Account details*/
-
-            'accNumber' => 'required',
-            'accName' => 'required',
-            'bankName' => 'required',
-            'branch' => 'required',
-            'agreement' => 'required',
-
-        ]);
-        try {
-            $position = Position::select('position')->find($request->positionApply);
-            $file_name = $request->firstName.' '.$request->lastName.' - '.$position.' - '. date('d m Y h iA').'.'.$request->get('fileToUpload')->getClientOriginalExtension();
-            $request->get('upload_file')->move(public_path('files') . $file_name);
-
-            $applicant = new Applicant();
-            $applicant->first_name = $request->firstName;
-            $applicant->last_name = $request->lastName;
-            $applicant->address = $request->address;
-            $applicant->email = $request->email;
-            $applicant->mobile = $request->mobileNumber;
-            $applicant->dob = $request->birthday;
-            $applicant->nic_no = $request->nicNumber;
-            $applicant->cv_upload = $file_name;
-//           proffesional details
-            $applicant->position = $request->positionApply;
-            $applicant->last_company = $request->lastCompany;
-            $applicant->last_tittle = $request->lastTittle;
-            $applicant->last_salary = $request->lastSalary;
-            $applicant->experience = $request->experience;
-            $applicant->notes = $request->notes;
-
-//            Account details
-            $applicant->account_no = $request->accNumber;
-            $applicant->account_name = $request->accName;
-            $applicant->bank = $request->bankName;
-            $applicant->branch = $request->branch;
-
-            $applicant->branch = 2; //    pending status
-            $applicant->save();
-            $notification = array(
-                'message' => 'Position Successfly Added',   
-                'alert-type' => 'success'
-            );
-            return redirect('/')->back()->with($notification);
-        } catch (QueryExeption $e) {
-            $notification = array(
-                'message' => 'Something went wrong!',
-                'alert-type' => 'error'
-            );
-            return redirect()->back()->with($notification);
-        }
     }
 
     /**
@@ -116,7 +62,8 @@ class ApplicantsController extends Controller
      */
     public function show($id)
     {
-        //
+        $applicants = Applicant::find($id);
+       return view('pages.showApplicant',compact('applicants'));
     }
 
     /**
