@@ -39,6 +39,19 @@
 
 
 @push('script')
+
+
+        <script type="text/javascript">
+        var oInput = document.getElementById('applicanData'),
+            oChild;
+        for(i = 0; i < oInput.childNodes.length; i++){
+            oChild = oInput.childNodes[i];
+            if(oChild.nodeName == 'select'){
+                alert(oChild.id);
+            }
+        }
+
+    </script>
     <script  type="text/javascript">
         $(function () {
            
@@ -59,8 +72,22 @@
             table.on( 'xhr', function ( e, settings, json ) {
                         json.data.forEach(function(val){
                         })
-            } );    
+            } );
+
+
+            var rowst= document.getElementsByTagName("select");
+
+            // let arry = Array.from(rowst)
+            // var array=[];
+            console.log(rowst );
+            // for(i = 0; i < rowst.length; i++){
+            //     array.push(i);
+            //     console.log(i);
+            // }
+
         })
+
+
         function changeStatus(val,id) {
         /* var xhttp;    
         xhttp = new XMLHttpRequest();
