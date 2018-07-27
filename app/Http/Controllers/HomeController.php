@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Position;
 use App\Applicant;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 
 class HomeController extends Controller
@@ -30,7 +31,7 @@ class HomeController extends Controller
             'lastName' => 'required',
             'address' => 'required',
             'email' => 'required',
-            'mobileNumber' => 'required|numeric|max:10',
+            'mobileNumber' => 'required|numeric',
             'birthday' => 'required',
             'nicNumber' => 'required',
             'fileToUpload' => 'required',
@@ -57,7 +58,6 @@ class HomeController extends Controller
             $position = Position::select('position')->find($request->positionApply);
             $file_name = $request->firstName.'_'.$request->lastName.'-'.$position->position.'-'. date('d m Y h iA').'.'.$request->fileToUpload->getClientOriginalExtension();
             $path = $request->file('fileToUpload')->storeAs('files' , $file_name);
-            
             $applicant = new Applicant();
             $applicant->first_name = $request->firstName;
             $applicant->last_name = $request->lastName;
@@ -85,17 +85,19 @@ class HomeController extends Controller
             $applicant->save();
 
             /*send  email */
-         /*    $data = [
+            $url = storage_path().'\app\files\\'. $applicant->cv_upload;
+            $data = [
                 'email' => 'ubaidullah.xplosa@gmail.com', 
                 'applicant' => $applicant,
+                'url' => $url,
                 'from' => 'u122195@gmail.com', 
                 'from_name' => 'CyberTech',
             ];
             Mail::send('pages.email', $data, function ($message) use ($data) {
-                $message->to($data['email'])->from($data['from'], $data['from_name'])->subject('Applicant Details!')->attach('/files/'.$data['applicant']['cv_upload']);
-            });  */
+                $message->to($data['email'])->from($data['from'], $data['from_name'])->subject('Applicant Details!')->attach($data['url']);
+            }); 
             $notification = array(
-                'message' => 'Position Successfly Added',   
+                'message' => 'Application Successfly',   
                 'alert-type' => 'success'
             );
             return redirect('/')->with($notification);

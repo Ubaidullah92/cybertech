@@ -23,11 +23,11 @@ class ApplicantsController extends Controller
 
         return datatables()->eloquent(Applicant::query())
                     ->addColumn('action', function ($data) {
-                        return '<select class="select" onchange="changeStatus(this.value,'. $data->id .')" id="status'.$data->id.'">
+                        return '<select class="select" style="float: left;width: 60%;" onchange="changeStatus(this.value,'. $data->id .')" id="status'.$data->id.'">
                         <option value="1">Selected</option>
                         <option value="2">Pending</option>
                         <option value="3">Rejected</option>
-                    </select> <a href="/applicant/' . $data->id . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> View</a>';
+                    </select> <a href="/applicant/' . $data->id . '" style="margin-top:10px" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> View</a>';
                     })
                     ->addIndexColumn()
                     ->toJson();
