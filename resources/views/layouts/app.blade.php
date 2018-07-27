@@ -29,10 +29,10 @@
     <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
 
     <!-- toastr -->
-    <link href="css/toastr.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/toastr.min.css" rel="stylesheet" type="text/css">
 
     <!-- datatable -->
-    <link rel="stylesheet" href="css/datatables.min.css">
+    <link rel="stylesheet" href="/css/datatables.min.css">
 </head>
 <body>
     <div id="app">
@@ -97,9 +97,10 @@
     </div>
 
 </body>
-
+    <script src="js/datatables.min.js"></script>
+    
     <!-- toastr -->
-    <script src="js/toastr.min.js"></script>
+    <script src="/js/toastr.min.js"></script>
     <script>
         @if(Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}";
@@ -122,5 +123,6 @@
         }
         @endif
     </script>
+    
 @stack('script')
 </html>

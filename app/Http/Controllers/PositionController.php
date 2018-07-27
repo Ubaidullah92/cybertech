@@ -39,12 +39,6 @@ class PositionController extends Controller
 
         return datatables()->eloquent(Position::query())->toJson();
     
-         /* return Datatables()->of($datas)
-            ->addColumn('action', function ($data) {
-                return '<a href="/place/' . $data->id . '/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
-            })
-            ->addIndexColumn()
-            ->toJson(); */
 
     }
     /**

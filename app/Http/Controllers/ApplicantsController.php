@@ -23,10 +23,10 @@ class ApplicantsController extends Controller
 
         return datatables()->eloquent(Applicant::query())
                     ->addColumn('action', function ($data) {
-                        return '<select class="select" name="status'.$data->id.'" id="status'.$data->id.'">
+                        return '<select class="select" onchange="changeStatus(this.value,'. $data->id .')" id="status'.$data->id.'">
                         <option value="1">Selected</option>
-                        <option value="2">Rejected</option>
-                        <option value="3">Pending</option>
+                        <option value="2">Pending</option>
+                        <option value="3">Rejected</option>
                     </select> <a href="/applicant/' . $data->id . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> View</a>';
                     })
                     ->addIndexColumn()
@@ -86,7 +86,7 @@ class ApplicantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Applicant::where('id',$id)->update(['status' => $request->status]);
     }
 
     /**

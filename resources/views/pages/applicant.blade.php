@@ -39,7 +39,6 @@
 
 
 @push('script')
-    <script src="js/datatables.min.js"></script>
     <script  type="text/javascript">
         $(function () {
            
@@ -62,8 +61,27 @@
                         })
             } );    
         })
-
-
+        function changeStatus(val,id) {
+        /* var xhttp;    
+        xhttp = new XMLHttpRequest();
+     
+        xhttp.open("PUT", "applicant/"+id+"?status"++val, true);
+        xhttp.send();*/
+        
+        $.ajax({
+            url     : '/applicant/'+id,
+            method  : 'PUT',
+            data    : {
+                status  : val,
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },    
+            
+            success : function(response){
+            }
+        });
+    }
     </script>
   
 @endpush

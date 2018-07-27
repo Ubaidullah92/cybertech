@@ -29,10 +29,12 @@
                         <li><b>Branch: </b> {{$applicants->branch}}</li>
 
                       </ul>
+                      <a  href="/applicant" type="button" class="backbtn" >Go Back</a>
+                      
                       @if($applicants->status == 1)
-                      <button type="button" id="reject" onclick="changeStatus({{$applicants->id}},3)" class="cancelbtn">Reject</button>
+                      <button type="button" id="reject" onclick="changeStatus({{$applicants->id}},3)" class="cancelbtn">Reject this applicant</button>
                       @else
-                      <button type="button" id="select" onclick="changeStatus({{$applicants->id}},1)" class="signupbtn">Select</button>
+                      <button type="button" id="select" onclick="changeStatus({{$applicants->id}},1)" class="signupbtn">Select this applicant</button>
                       @endif
                     </div><!-- /.box-body -->
                 </div>
@@ -46,23 +48,26 @@
 
 
 @push('script')
+    <script src="/js/datatables.min.js"></script>
     <script>
-    $(document).ready(function(){
-        $("button").click(function(id,val){
-            $.post("/position/"+id,
-                {
-                    status: val
-                },
-            });
-    });
-       /*  function changeStatus(id,status){
-            ajax({
-                url: "/position/"+id,
-                type: "PUT",
-                data: {status : status},
-                dataType: "html"
-                });
-        } */
+    
+  
+        function changeStatus(id,status){
+            $.ajax({
+            url     : '/applicant/'+id,
+            method  : 'PUT',
+            data    : {
+                status  : status,
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },    
+            
+            success : function(response){
+                window.location.reload(1);
+            }
+        });
+        }
     </script>
   
 @endpush
