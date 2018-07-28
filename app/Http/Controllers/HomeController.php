@@ -86,6 +86,8 @@ class HomeController extends Controller
 
             /*send  email */
             $url = storage_path().'\app\files\\'. $applicant->cv_upload;
+            $position = Position::find($applicant->position);
+            $applicant->applied_position = $position->position;
             $data = [
                 'email' => 'ubaidullah.xplosa@gmail.com', 
                 'applicant' => $applicant,

@@ -17,7 +17,7 @@
                         <li><b>Mobile Number: </b> {{$applicants->mobile}}</li>
                         <li><b>Date of Birth: </b> {{$applicants->dob}}</li>
                         <li><b>NIC Number: </b> {{$applicants->nic_no}}</li>
-                        <li><b>Applied Position: </b> {{$applicants->position}}</li>
+                        <li><b>Applied Position: </b> {{$applicants->applied_position}}</li>
                         <li><b>Previously worked company: </b> {{$applicants->last_company}}</li>
                         <li><b>Your job tittle: </b> {{$applicants->last_tittle}}</li>
                         <li><b>Monthly salary was: </b> {{$applicants->last_salary}}</li>
@@ -36,6 +36,8 @@
                       @else
                       <button type="button" id="select" onclick="changeStatus({{$applicants->id}},1)" class="signupbtn">Select this applicant</button>
                       @endif
+
+                      <a  href="/applicant/share/{{$applicants->id}}" type="button" class="backbtn" >Share via email</a>
                     </div><!-- /.box-body -->
                 </div>
             </div>

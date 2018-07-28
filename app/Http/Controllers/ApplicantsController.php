@@ -38,6 +38,18 @@ class ApplicantsController extends Controller
     
 
     }
+
+    public function getShareForm($id)
+    {
+       
+        $applicants = \DB::table('applicants')
+                ->select('applicants.first_name','applicants.last_name','applicants.address','applicants.email','applicants.mobile','applicants.dob','applicants.nic_no','positions.position','applicants.last_company','applicants.last_tittle','applicants.last_salary','applicants.experience','applicants.notes','applicants.account_no','applicants.account_name','applicants.bank','applicants.branch','applicants.cv_upload')->join('positions','positions.id','applicants.position')->where('applicants.id',$id)->first();
+        $message ='';
+        foreach($applicants as $key=>$applicant){
+            $message = $message. ucwords(str_replace('_',' ',$key)).':'.$applicant.'\n';
+        }
+        return view('pages.message',compact('message','applicants'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -67,6 +79,8 @@ class ApplicantsController extends Controller
     public function show($id)
     {
         $applicants = Applicant::find($id);
+        $position = Position::find($applicants->position);
+        $applicants->applied_position = $position->position;
        return view('pages.showApplicant',compact('applicants'));
     }
 

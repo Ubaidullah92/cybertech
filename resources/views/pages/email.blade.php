@@ -10,7 +10,7 @@
                         <tr><th>Mobile Number: </th> <td>{{$applicant->mobile}}</td></tr>
                         <tr><th>Date of Birth: </th> <td>{{$applicant->dob}}</td></tr>
                         <tr><th>NIC Number: </th> <td>{{$applicant->nic_no}}</td></tr>
-                        <tr><th>Applied Position: </th> <td>{{$applicant->position}}</td></tr>
+                        <tr><th>Applied Position: </th> <td>{{$applicant->applied_position}}</td></tr>
                         <tr><th>Previously worked company: </th> <td>{{$applicant->last_company}}</td></tr>
                         <tr><th>Your job tittle: </th> <td>{{$applicant->last_tittle}}</td></tr>
                         <tr><th>Monthly salary was: </th> <td>{{$applicant->last_salary}}</td></tr>
