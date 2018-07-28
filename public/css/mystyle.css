@@ -101,6 +101,7 @@ button {
 .backbtn {
     padding: 14px 20px;
     margin-left: 10px;
+    margin-top:8px;
 }
 
 /* Float cancel and signup buttons and add an equal width */

@@ -21,12 +21,16 @@ class ApplicantsController extends Controller
     public function getApplicant()
     {
 
+
         return datatables()->eloquent(Applicant::query())
                     ->addColumn('action', function ($data) {
+                        $column1=($data->status === '1')?'<option value="1" selected="true">Selected</option>':'<option value="1">Selected</option>';
+                        $column2= ($data->status === '2')?'<option value="2" selected="true">Pending</option>':'<option value="2">Pending</option>';
+                        $column3= ($data->status === '3')?'<option value="3" selected="true">Rejected</option>':'<option value="3">Rejected</option>';
+                        
+                        
                         return '<select class="select" style="float: left;width: 60%;" onchange="changeStatus(this.value,'. $data->id .')" id="status'.$data->id.'">
-                        <option value="1">Selected</option>
-                        <option value="2">Pending</option>
-                        <option value="3">Rejected</option>
+                                '.$column1 . $column2 . $column3.'
                     </select> <a href="/applicant/' . $data->id . '" style="margin-top:10px" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> View</a>';
                     })
                     ->addIndexColumn()

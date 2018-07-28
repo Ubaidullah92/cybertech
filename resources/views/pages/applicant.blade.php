@@ -75,11 +75,11 @@
             } );
 
 
-            var rowst= document.getElementsByTagName("select");
+            // var rowst= document.getElementsByTagName("select");
 
             // let arry = Array.from(rowst)
             // var array=[];
-            console.log(rowst );
+            // console.log(rowst );
             // for(i = 0; i < rowst.length; i++){
             //     array.push(i);
             //     console.log(i);
