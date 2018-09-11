@@ -12,6 +12,7 @@
 */
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/apply', 'HomeController@store')->name('store');
+Route::get('/test', 'HomeController@test');
 
 Auth::routes();
 Route::get('/applicant/view','ApplicantsController@getApplicant')->name('applicant.view');
